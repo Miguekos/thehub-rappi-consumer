@@ -21,13 +21,11 @@ export class AppController {
     // const newSubscriber =
     //   await this.subscribersService.addSubscriber(subscriber);
     console.log('subscriber', subscriber);
-
     const channel = context.getChannelRef();
-    // console.log('channel', channel);
     const originalMsg = context.getMessage();
     console.log('originalMsg', originalMsg?.fields?.deliveryTag);
+    await this.appService.createOrders(subscriber);
     channel.ack(originalMsg);
-
     return 'newSubscriber';
   }
 }
